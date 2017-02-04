@@ -13,12 +13,12 @@ class ATSongAlbumView: UIImageView {
     /**
      *  磁盘专辑封面开始旋转
      */
-    open func startRotating() -> Void {
+    open func startRotating() -> Void {        
         self.layer.removeAnimation(forKey: "rotation")
         let animation = CABasicAnimation()
         animation.keyPath = "transform.rotation"
         animation.toValue = M_PI * 2
-        animation.duration = 10.0
+        animation.duration = 15.0
         animation.repeatCount = MAXFLOAT
         
         self.layer.add(animation, forKey:"rotation")

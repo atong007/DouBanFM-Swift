@@ -15,7 +15,7 @@ import MediaPlayer
 import AVKit
 
 
-let kHeightForBottomToolView:CGFloat = 80
+let kHeightForBottomToolView:CGFloat = 60
 let producer: SignalProducer<String, NoError> = ATSongViewModel().loadSongSignal
 let lrcProducer: SignalProducer<String, NoError> = ATSongViewModel().loadLrcSignal
 let kMainColor: UIColor = UIColor.init(red: 199/255.0, green: 46/255.0, blue: 42/255.0, alpha: 1.0)
@@ -88,8 +88,11 @@ class ATMusicViewController: UIViewController {
         needle = needleImageView
         view.insertSubview(needleImageView, belowSubview: topView)
         needleImageView.image = UIImage.init(named: "play_needle_play")
+        var needleSize = needleImageView.image?.size
+        needleSize?.width *= (self.view.frame.size.width / 375)
+        needleSize?.height *= (self.view.frame.size.height / 668)
         needleImageView.snp.makeConstraints { (make) in
-            make.size.equalTo((needleImageView.image?.size)!)
+            make.size.equalTo(needleSize!)
             make.centerX.equalToSuperview()
             make.top.equalTo(topView.snp.bottom).offset(-90)
         }
@@ -100,8 +103,8 @@ class ATMusicViewController: UIViewController {
         musicDiskBackView.image = UIImage.init(named: "disk_mask")
         view.insertSubview(musicDiskBackView, belowSubview: needleImageView)
         musicDiskBackView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(70)
-            make.right.equalToSuperview().offset(-70)
+            make.left.equalToSuperview().offset(60)
+            make.right.equalToSuperview().offset(-60)
             make.width.equalTo(musicDiskBackView.snp.height)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-60)
@@ -123,11 +126,13 @@ class ATMusicViewController: UIViewController {
         albumImageView.startRotating()
         self.albumImageView = albumImageView
         musicDiskBackView.addSubview(albumImageView)
-        albumImageView.layer.cornerRadius = 66
+        let albumImageViewMargin = (self.view.frame.width - 2 * 70) * 0.18
+        albumImageView.layer.cornerRadius = (self.view.frame.width - 2 * (70 + albumImageViewMargin)) / 2
         albumImageView.clipsToBounds = true
         albumImageView.image = UIImage.init(named: "defaultCover")
+        print(albumImageViewMargin)
         albumImageView.snp.makeConstraints { (make) in
-            make.height.width.equalTo(133)
+            make.top.left.equalTo(musicDiskImageView).offset(albumImageViewMargin)
             make.center.equalToSuperview()
         }
         
@@ -145,17 +150,6 @@ class ATMusicViewController: UIViewController {
             make.top.equalTo(musicDiskBackView.snp.bottom).offset(10)
         }
 
-        // 歌词
-        let lrcView = ATLrcView()
-        self.view.addSubview(lrcView)
-        self.lrcView = lrcView
-        lrcView.snp.makeConstraints { (make) in
-            make.height.equalTo(120)
-            make.leftMargin.equalTo(20)
-            make.rightMargin.equalTo(-20)
-            make.top.equalTo(remainTimeLabel.snp.bottom).offset(5)
-        }
-        
         // 底部播放工具栏
         let bottomToolView = UIView.init(frame: CGRect.init(x: 0, y: view.frame.size.height - kHeightForBottomToolView, width: view.frame.size.width, height: kHeightForBottomToolView))
         bottomToolView.backgroundColor = UIColor.init(red: 179/255.0, green: 179/255.0, blue: 179/255.0, alpha: 0.6)
@@ -188,8 +182,8 @@ class ATMusicViewController: UIViewController {
             playButton.isSelected ? albumImageView.stoptRotating() : albumImageView.resumeRotating()
             playButton.isSelected ? self.avPlayer?.pause() : self.avPlayer?.play()
             playButton.isSelected ? self.timer?.invalidate() : self.startTimer()
-            let rotatedAngle = (playButton.isSelected ? -1 : 0) * CGFloat(15 * M_PI/180.0)
-            UIView.animate(withDuration: 0.8, animations: {
+            let rotatedAngle = (playButton.isSelected ? -1 : 0) * CGFloat(20 * M_PI/180.0)
+            UIView.animate(withDuration: 0.6, animations: {
                 needleImageView.transform = CGAffineTransform.init(rotationAngle: rotatedAngle)
             })
         }
@@ -218,6 +212,18 @@ class ATMusicViewController: UIViewController {
             make.height.equalTo(2)
             make.top.equalTo(bottomToolView).offset(-20)
         }
+        
+        // 歌词
+        let lrcView = ATLrcView()
+        self.view.addSubview(lrcView)
+        self.lrcView = lrcView
+        lrcView.snp.makeConstraints { (make) in
+            make.leftMargin.equalTo(20)
+            make.rightMargin.equalTo(-20)
+            make.bottom.equalTo(songProgress.snp.top).offset(-15)
+            make.top.equalTo(remainTimeLabel.snp.bottom).offset(5)
+        }
+        
         
     }
     
@@ -272,8 +278,10 @@ class ATMusicViewController: UIViewController {
     func updateSongView() {
         
         let pictureURL = URL.init(string: ATSongInfo.sharedInstance.picture)
-        try! self.albumImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
-        try! self.backgroundImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
+        if pictureURL != nil {
+            try! self.albumImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
+            try! self.backgroundImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
+        }
 
         // 设置歌曲名和演唱者
         let songTitle: NSString = String.init(format: "%@\n%@",ATSongInfo.sharedInstance.title, ATSongInfo.sharedInstance.artist) as! NSString
