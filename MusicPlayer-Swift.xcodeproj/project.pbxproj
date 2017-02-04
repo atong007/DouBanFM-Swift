@@ -8,39 +8,46 @@
 
 /* Begin PBXBuildFile section */
 		755E420BE0C1AA4EEDE24DB0 /* Pods_MusicPlayer_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15704820B33CFF64393422CD /* Pods_MusicPlayer_Swift.framework */; };
-		EE60FE571E348A9800F1DBAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE561E348A9800F1DBAF /* AppDelegate.swift */; };
+		EE58F1921E447C6700126A7C /* ATLrcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F1911E447C6700126A7C /* ATLrcView.swift */; };
+		EE58F1941E447D6100126A7C /* ATLrcCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F1931E447D6100126A7C /* ATLrcCell.swift */; };
+		EE58F1961E44876300126A7C /* ATLrcModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE58F1951E44876300126A7C /* ATLrcModel.swift */; };
 		EE60FE5C1E348A9800F1DBAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE60FE5A1E348A9800F1DBAF /* Main.storyboard */; };
 		EE60FE5E1E348A9800F1DBAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE60FE5D1E348A9800F1DBAF /* Assets.xcassets */; };
 		EE60FE611E348A9800F1DBAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE60FE5F1E348A9800F1DBAF /* LaunchScreen.storyboard */; };
-		EE60FE691E348B1900F1DBAF /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE681E348B1900F1DBAF /* MusicViewController.swift */; };
 		EE60FE6B1E34993500F1DBAF /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE60FE6A1E34993500F1DBAF /* Alamofire.framework */; };
 		EE60FE6D1E34993700F1DBAF /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE60FE6C1E34993700F1DBAF /* SnapKit.framework */; };
 		EE60FE711E35A71300F1DBAF /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE60FE701E35A71300F1DBAF /* ReactiveCocoa.framework */; };
-		EE60FE7B1E35DAC300F1DBAF /* SongInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE7A1E35DAC300F1DBAF /* SongInfo.swift */; };
-		EE60FE7E1E35DB1400F1DBAF /* SongAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE7D1E35DB1400F1DBAF /* SongAlbumView.swift */; };
-		EE8450C71E36F63C0001D50A /* SongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8450C61E36F63C0001D50A /* SongViewModel.swift */; };
+		EE60FE7B1E35DAC300F1DBAF /* ATSongInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE7A1E35DAC300F1DBAF /* ATSongInfo.swift */; };
+		EE60FE7E1E35DB1400F1DBAF /* ATSongAlbumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE60FE7D1E35DB1400F1DBAF /* ATSongAlbumView.swift */; };
 		EE8450C91E36F6700001D50A /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE8450C81E36F6700001D50A /* ReactiveSwift.framework */; };
+		EEFFE0281E45AD2D00273491 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFE0271E45AD2D00273491 /* AppDelegate.swift */; };
+		EEFFE02A1E45AD3300273491 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EEFFE0291E45AD3300273491 /* Info.plist */; };
+		EEFFE02D1E45AD4D00273491 /* ATMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFE02C1E45AD4D00273491 /* ATMusicViewController.swift */; };
+		EEFFE0301E45AD6A00273491 /* ATSongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFE02F1E45AD6A00273491 /* ATSongViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15704820B33CFF64393422CD /* Pods_MusicPlayer_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicPlayer_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE47EB6B973CA4FFB0D9340 /* Pods-MusicPlayer-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicPlayer-Swift/Pods-MusicPlayer-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		6528A39021522B160A1BECE0 /* Pods-MusicPlayer-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicPlayer-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicPlayer-Swift/Pods-MusicPlayer-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		EE58F1911E447C6700126A7C /* ATLrcView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATLrcView.swift; sourceTree = "<group>"; };
+		EE58F1931E447D6100126A7C /* ATLrcCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATLrcCell.swift; sourceTree = "<group>"; };
+		EE58F1951E44876300126A7C /* ATLrcModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATLrcModel.swift; sourceTree = "<group>"; };
 		EE60FE531E348A9800F1DBAF /* MusicPlayer-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MusicPlayer-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE60FE561E348A9800F1DBAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE60FE5B1E348A9800F1DBAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE60FE5D1E348A9800F1DBAF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE60FE601E348A9800F1DBAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EE60FE621E348A9800F1DBAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE60FE681E348B1900F1DBAF /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		EE60FE6A1E34993500F1DBAF /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MusicPlayer-Swift-cwppvahwufepjndjfifzyjvbrmnm/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		EE60FE6C1E34993700F1DBAF /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MusicPlayer-Swift-cwppvahwufepjndjfifzyjvbrmnm/Build/Products/Debug-iphonesimulator/SnapKit/SnapKit.framework"; sourceTree = "<group>"; };
 		EE60FE6E1E35A46A00F1DBAF /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = "Pods/../build/Debug-iphoneos/ReactiveSwift/ReactiveSwift.framework"; sourceTree = "<group>"; };
 		EE60FE701E35A71300F1DBAF /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MusicPlayer-Swift-cwppvahwufepjndjfifzyjvbrmnm/Build/Products/Debug-iphonesimulator/ReactiveCocoa/ReactiveCocoa.framework"; sourceTree = "<group>"; };
-		EE60FE7A1E35DAC300F1DBAF /* SongInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongInfo.swift; sourceTree = "<group>"; };
-		EE60FE7D1E35DB1400F1DBAF /* SongAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAlbumView.swift; sourceTree = "<group>"; };
-		EE8450C61E36F63C0001D50A /* SongViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewModel.swift; sourceTree = "<group>"; };
+		EE60FE7A1E35DAC300F1DBAF /* ATSongInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSongInfo.swift; sourceTree = "<group>"; };
+		EE60FE7D1E35DB1400F1DBAF /* ATSongAlbumView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSongAlbumView.swift; sourceTree = "<group>"; };
 		EE8450C81E36F6700001D50A /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MusicPlayer-Swift-cwppvahwufepjndjfifzyjvbrmnm/Build/Products/Debug-iphonesimulator/ReactiveSwift/ReactiveSwift.framework"; sourceTree = "<group>"; };
+		EEFFE0271E45AD2D00273491 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EEFFE0291E45AD3300273491 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEFFE02C1E45AD4D00273491 /* ATMusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATMusicViewController.swift; sourceTree = "<group>"; };
+		EEFFE02F1E45AD6A00273491 /* ATSongViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSongViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,10 +109,10 @@
 		EE60FE551E348A9800F1DBAF /* MusicPlayer-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				EEFFE02B1E45AD4D00273491 /* Controller */,
 				EE60FE761E35DAAC00F1DBAF /* Model */,
 				EE60FE781E35DAAC00F1DBAF /* View */,
-				EE60FE681E348B1900F1DBAF /* MusicViewController.swift */,
-				EE8450C61E36F63C0001D50A /* SongViewModel.swift */,
+				EEFFE02E1E45AD6A00273491 /* ViewModel */,
 				EE60FE7C1E35DACA00F1DBAF /* Others */,
 			);
 			path = "MusicPlayer-Swift";
@@ -114,7 +121,8 @@
 		EE60FE761E35DAAC00F1DBAF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EE60FE7A1E35DAC300F1DBAF /* SongInfo.swift */,
+				EE60FE7A1E35DAC300F1DBAF /* ATSongInfo.swift */,
+				EE58F1951E44876300126A7C /* ATLrcModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,7 +130,9 @@
 		EE60FE781E35DAAC00F1DBAF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE60FE7D1E35DB1400F1DBAF /* SongAlbumView.swift */,
+				EE58F1911E447C6700126A7C /* ATLrcView.swift */,
+				EE58F1931E447D6100126A7C /* ATLrcCell.swift */,
+				EE60FE7D1E35DB1400F1DBAF /* ATSongAlbumView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -130,13 +140,29 @@
 		EE60FE7C1E35DACA00F1DBAF /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				EE60FE561E348A9800F1DBAF /* AppDelegate.swift */,
+				EEFFE0291E45AD3300273491 /* Info.plist */,
+				EEFFE0271E45AD2D00273491 /* AppDelegate.swift */,
 				EE60FE5A1E348A9800F1DBAF /* Main.storyboard */,
 				EE60FE5D1E348A9800F1DBAF /* Assets.xcassets */,
 				EE60FE5F1E348A9800F1DBAF /* LaunchScreen.storyboard */,
-				EE60FE621E348A9800F1DBAF /* Info.plist */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		EEFFE02B1E45AD4D00273491 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EEFFE02C1E45AD4D00273491 /* ATMusicViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EEFFE02E1E45AD6A00273491 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EEFFE02F1E45AD6A00273491 /* ATSongViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +201,7 @@
 					EE60FE521E348A9800F1DBAF = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = GRT2DH3R4P;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -202,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEFFE02A1E45AD3300273491 /* Info.plist in Resources */,
 				EE60FE611E348A9800F1DBAF /* LaunchScreen.storyboard in Resources */,
 				EE60FE5E1E348A9800F1DBAF /* Assets.xcassets in Resources */,
 				EE60FE5C1E348A9800F1DBAF /* Main.storyboard in Resources */,
@@ -263,11 +291,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE60FE7B1E35DAC300F1DBAF /* SongInfo.swift in Sources */,
-				EE60FE691E348B1900F1DBAF /* MusicViewController.swift in Sources */,
-				EE60FE7E1E35DB1400F1DBAF /* SongAlbumView.swift in Sources */,
-				EE60FE571E348A9800F1DBAF /* AppDelegate.swift in Sources */,
-				EE8450C71E36F63C0001D50A /* SongViewModel.swift in Sources */,
+				EEFFE0301E45AD6A00273491 /* ATSongViewModel.swift in Sources */,
+				EEFFE0281E45AD2D00273491 /* AppDelegate.swift in Sources */,
+				EEFFE02D1E45AD4D00273491 /* ATMusicViewController.swift in Sources */,
+				EE58F1961E44876300126A7C /* ATLrcModel.swift in Sources */,
+				EE58F1941E447D6100126A7C /* ATLrcCell.swift in Sources */,
+				EE60FE7B1E35DAC300F1DBAF /* ATSongInfo.swift in Sources */,
+				EE60FE7E1E35DB1400F1DBAF /* ATSongAlbumView.swift in Sources */,
+				EE58F1921E447C6700126A7C /* ATLrcView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +420,7 @@
 			baseConfigurationReference = 6528A39021522B160A1BECE0 /* Pods-MusicPlayer-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = GRT2DH3R4P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,6 +430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lanhaitianwang.www.MusicPlayer-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -407,6 +440,7 @@
 			baseConfigurationReference = 2AE47EB6B973CA4FFB0D9340 /* Pods-MusicPlayer-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = GRT2DH3R4P;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

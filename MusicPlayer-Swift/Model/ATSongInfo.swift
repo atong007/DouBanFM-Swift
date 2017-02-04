@@ -1,5 +1,5 @@
 //
-//  SongInfo.swift
+//  ATSongInfo.swift
 //  MusicPlayer-Swift
 //
 //  Created by 洪龙通 on 2017/1/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SongInfo: NSObject {
+class ATSongInfo: NSObject {
     var title: String!
     var artist: String!
     var length: NSNumber!
@@ -17,15 +17,14 @@ class SongInfo: NSObject {
     var like : Bool!
     var url : String!
     var sid : String!
-//    var lrcContentStr:
+    var lrcContentStr: String!
     
-    static let sharedInstance = SongInfo.init()
+    static let sharedInstance = ATSongInfo.init()
     private override init(){}
     
     func setSongInfo(with dict: [String : Any]){
 
-        SongInfo.sharedInstance.setValuesForKeys(dict)
-        print("\(picture)")
+        ATSongInfo.sharedInstance.setValuesForKeys(dict)
     }
     
     override func setValue(_ value: Any?, forUndefinedKey key: String) {

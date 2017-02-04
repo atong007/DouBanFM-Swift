@@ -1,5 +1,5 @@
 //
-//  SongAlbumView.swift
+//  ATSongAlbumView.swift
 //  MusicPlayer-Swift
 //
 //  Created by 洪龙通 on 2017/1/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SongAlbumView: UIImageView {
+class ATSongAlbumView: UIImageView {
     
     /**
      *  磁盘专辑封面开始旋转

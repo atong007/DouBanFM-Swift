@@ -1,5 +1,5 @@
 //
-//  MusicViewController.swift
+//  ATMusicViewController.swift
 //  MusicPlayer-Swift
 //
 //  Created by 洪龙通 on 2017/1/22.
@@ -16,11 +16,12 @@ import AVKit
 
 
 let kHeightForBottomToolView:CGFloat = 80
-let producer: SignalProducer<String, NoError> = SongViewModel().loadSongSignal
+let producer: SignalProducer<String, NoError> = ATSongViewModel().loadSongSignal
+let lrcProducer: SignalProducer<String, NoError> = ATSongViewModel().loadLrcSignal
 let kMainColor: UIColor = UIColor.init(red: 199/255.0, green: 46/255.0, blue: 42/255.0, alpha: 1.0)
 var count: Int = 0
 
-class MusicViewController: UIViewController {
+class ATMusicViewController: UIViewController {
     
     weak var needle: UIImageView?
     weak var songInfoLabel: UILabel?
@@ -28,8 +29,9 @@ class MusicViewController: UIViewController {
     weak var backgroundImageView: UIImageView?
     weak var remainTimeLabel: UILabel?
     weak var songProgress: UIProgressView?
-    var avPlayer: AVPlayer?
-    var timer: Timer?
+    weak var lrcView: ATLrcView!
+    var avPlayer: AVPlayer!
+    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +118,7 @@ class MusicViewController: UIViewController {
             make.center.equalToSuperview()
         }
         // 唱片图片
-        let albumImageView = SongAlbumView()
+        let albumImageView = ATSongAlbumView()
         albumImageView.contentMode = UIViewContentMode.scaleAspectFill;
         albumImageView.startRotating()
         self.albumImageView = albumImageView
@@ -143,6 +145,17 @@ class MusicViewController: UIViewController {
             make.top.equalTo(musicDiskBackView.snp.bottom).offset(10)
         }
 
+        // 歌词
+        let lrcView = ATLrcView()
+        self.view.addSubview(lrcView)
+        self.lrcView = lrcView
+        lrcView.snp.makeConstraints { (make) in
+            make.height.equalTo(120)
+            make.leftMargin.equalTo(20)
+            make.rightMargin.equalTo(-20)
+            make.top.equalTo(remainTimeLabel.snp.bottom).offset(5)
+        }
+        
         // 底部播放工具栏
         let bottomToolView = UIView.init(frame: CGRect.init(x: 0, y: view.frame.size.height - kHeightForBottomToolView, width: view.frame.size.width, height: kHeightForBottomToolView))
         bottomToolView.backgroundColor = UIColor.init(red: 179/255.0, green: 179/255.0, blue: 179/255.0, alpha: 0.6)
@@ -194,7 +207,6 @@ class MusicViewController: UIViewController {
             self.playNextSong()
         }
         
-        
         // 歌曲进度条
         let songProgress = UIProgressView()
         songProgress.progressTintColor = kMainColor
@@ -221,8 +233,17 @@ class MusicViewController: UIViewController {
     }
     
     func loadSongInfo() {
+        
+        // 先把上一首所存储的歌曲的歌词先清空
+        if self.lrcView.lrcData != nil {
+            self.lrcView.lrcData = nil
+            self.lrcView.reloadData()
+        }
+        
         let subscriber1 = Observer<String, NoError>(value: {
             print("观察者1接收到值 \($0)")
+            self.loadSongLrc()
+            
             let mainQueue = DispatchQueue.main
             mainQueue.async {
                 self.updateSongView()
@@ -235,25 +256,38 @@ class MusicViewController: UIViewController {
         producer.start(subscriber1)
     }
     
+    func loadSongLrc() {
+        let subscriber = Observer<String, NoError>(value: {
+            print("观察者接收到值 \($0)")
+            let mainQueue = DispatchQueue.main
+            mainQueue.async {
+                let lrcModel = ATLrcModel.lrcDataWithString(contentStr: ATSongInfo.sharedInstance.lrcContentStr)
+                self.lrcView?.lrcData = lrcModel
+                self.lrcView?.reloadData()
+            }
+        })
+        lrcProducer.start(subscriber)
+    }
+    
     func updateSongView() {
         
-        let pictureURL = URL.init(string: SongInfo.sharedInstance.picture)
+        let pictureURL = URL.init(string: ATSongInfo.sharedInstance.picture)
         try! self.albumImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
         try! self.backgroundImageView?.image = UIImage.init(data: Data.init(contentsOf: pictureURL!))
 
         // 设置歌曲名和演唱者
-        let songTitle: NSString = String.init(format: "%@\n%@",SongInfo.sharedInstance.title, SongInfo.sharedInstance.artist) as! NSString
+        let songTitle: NSString = String.init(format: "%@\n%@",ATSongInfo.sharedInstance.title, ATSongInfo.sharedInstance.artist) as! NSString
         let attributedString = NSMutableAttributedString.init(string: songTitle as String, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 15)])
-        attributedString.setAttributes([NSFontAttributeName : UIFont.boldSystemFont(ofSize: 11)], range: songTitle.range(of: SongInfo.sharedInstance.artist))
+        attributedString.setAttributes([NSFontAttributeName : UIFont.boldSystemFont(ofSize: 11)], range: songTitle.range(of: ATSongInfo.sharedInstance.artist))
         self.songInfoLabel?.attributedText = attributedString
 
     }
     
     func playSong() {
-        print(SongInfo.sharedInstance.url)
+        print(ATSongInfo.sharedInstance.url)
         
         if avPlayer == nil {
-            let songUrlString: String = SongInfo.sharedInstance.url
+            let songUrlString: String = ATSongInfo.sharedInstance.url
             let videoURL = NSURL(string: songUrlString)
             avPlayer = AVPlayer(url: videoURL! as URL)
             let playerLayer = AVPlayerLayer(player: avPlayer)
@@ -262,7 +296,7 @@ class MusicViewController: UIViewController {
             avPlayer?.play()
         }else {
             avPlayer?.pause()
-            let playerItem = AVPlayerItem.init(url: URL.init(string:SongInfo.sharedInstance.url)!)
+            let playerItem = AVPlayerItem.init(url: URL.init(string:ATSongInfo.sharedInstance.url)!)
             avPlayer?.replaceCurrentItem(with: playerItem)
             avPlayer?.play()
 
@@ -277,19 +311,30 @@ class MusicViewController: UIViewController {
     }
     
     func startTimer() {
-        let songLength = SongInfo.sharedInstance.length
+        let songLength = ATSongInfo.sharedInstance.length
         let timeValue = String.init(format: "%i:%02i", (songLength?.intValue)! / 60, (songLength?.intValue)! % 60)
         self.timer = Timer.scheduledTimer(withTimeInterval: 1,
                                          repeats: true,
                                          block: { (timer) in
-                                            if count > SongInfo.sharedInstance.length.intValue{
+                                            if count > ATSongInfo.sharedInstance.length.intValue{
                                                 self.playNextSong()
                                             }else {
                                                 // 设置歌曲时间
                                                 let countingTimeValue = String.init(format: "%02i:%02i", count / 60, count % 60)
                                                 self.remainTimeLabel?.text = String.init(format: "%@/%@", countingTimeValue, timeValue)
                                                 // 设置播放进度条
-                                                self.songProgress?.progress = Float(count) / SongInfo.sharedInstance.length.floatValue
+                                                self.songProgress?.progress = Float(count) / ATSongInfo.sharedInstance.length.floatValue
+                                                
+                                                // 如果有歌词，滚动歌词
+                                                if self.lrcView.lrcData != nil {
+                                                    let timeArray = self.lrcView.lrcData!.timeArray!
+                                                    for i in 0..<timeArray.count {
+                                                        if timeArray[i] == countingTimeValue {
+                                                            self.lrcView?.selectRow(i)
+                                                            break
+                                                        }
+                                                    }
+                                                }
                                                 count += 1
                                             }
                                             
