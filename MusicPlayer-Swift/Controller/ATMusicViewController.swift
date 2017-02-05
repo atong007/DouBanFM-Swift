@@ -28,6 +28,7 @@ class ATMusicViewController: UIViewController {
     weak var albumImageView: UIImageView?
     weak var backgroundImageView: UIImageView?
     weak var remainTimeLabel: UILabel?
+    weak var playButton: UIButton?
     weak var songProgress: UIProgressView?
     weak var lrcView: ATLrcView!
     var avPlayer: AVPlayer!
@@ -167,6 +168,7 @@ class ATMusicViewController: UIViewController {
         }
         
         let playButton = UIButton()
+        self.playButton = playButton
         playButton.setImage(UIImage.init(named: "playButton"), for: UIControlState.normal)
         playButton.setImage(UIImage.init(named: "pauseButton"), for: UIControlState.selected)
         bottomToolView.addSubview(playButton)
@@ -315,6 +317,8 @@ class ATMusicViewController: UIViewController {
         self.timer?.invalidate()
         count = 0
         self.songProgress?.progress = 0.0
+        // 如果当前歌曲被暂停了，就切换到播放状态
+        self.playButton?.sendActions(for: UIControlEvents.touchUpInside)
         self.loadSongInfo()
     }
     
